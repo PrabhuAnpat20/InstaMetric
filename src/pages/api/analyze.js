@@ -1,4 +1,5 @@
 // pages/api/analyze.js
+
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     res.setHeader("Allow", ["POST"]);
@@ -6,10 +7,8 @@ export default async function handler(req, res) {
     return;
   }
 
-  const API_URL =
-    "https://api.langflow.astra.datastax.com/lf/d2924391-4b67-4536-ba1f-e791057432fa/api/v1/run/59dd73de-b8cb-4405-b343-177d52f324cb?stream=false";
-  const API_TOKEN =
-    "AstraCS:XgZOFKlfSeSbRdAJvLRYRdsv:a8513d74f870b53b8fb0d6a3d4653af83be2872367763466164602dad58f72a2";
+  const API_URL = process.env.API_URL;
+  const API_TOKEN = process.env.API_TOKEN;
 
   try {
     // Combine the post type and username into a single input string
