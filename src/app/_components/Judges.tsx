@@ -7,31 +7,31 @@ const people = [
     id: 1,
     name: "Hitesh Choudhary",
     designation: "Software Engineer",
-    image: "/Judges/hitesh.jpg", // Image from the public folder
+    image: "/hitesh.jpg", // Image from the public folder
   },
   {
     id: 2,
     name: "Saksham Choudhary",
     designation: "Product Manager",
-    image: "/Judges/saksham.jpg", // Image from the public folder
+    image: "/saksham.jpg", // Image from the public folder
   },
   {
     id: 3,
     name: "Ranveer Allahbadia",
     designation: "Data Scientist",
-    image: "/Judges/beerbicep.jpg", // Image from the public folder
+    image: "/beerbicep.jpg", // Image from the public folder
   },
   {
     id: 4,
     name: "Harshil Karia",
     designation: "UX Designer",
-    image: "/Judges/Harshil.png", // Image from the public folder
+    image: "/Harshil.png", // Image from the public folder
   },
   {
     id: 5,
     name: "Ayush Anand",
     designation: "Soap Developer",
-    image: "/Judges/Ayush.png", // Image from the public folder
+    image: "/Ayush.png", // Image from the public folder
   },
 ];
 

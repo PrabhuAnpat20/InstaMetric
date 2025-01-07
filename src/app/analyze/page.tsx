@@ -27,31 +27,31 @@ const judges: Judge[] = [
     id: 1,
     name: "Hitesh Choudhary",
     username: "hiteshchoudharyofficial",
-    photo: "/Judges/hitesh.jpg",
+    photo: "/hitesh.jpg",
   },
   {
     id: 2,
     name: "Saksham Choudhary",
     username: "sakshamchoudharyofficial",
-    photo: "/Judges/saksham.jpg",
+    photo: "/saksham.jpg",
   },
   {
     id: 3,
     name: "Ranveer Allahbadia",
     username: "beerbiceps",
-    photo: "/Judges/beerbicep.jpg",
+    photo: "/beerbicep.jpg",
   },
   {
     id: 4,
     name: "Harshil Karia",
     username: "harshiljkaria",
-    photo: "/Judges/Harshil.png",
+    photo: "/Harshil.png",
   },
   {
     id: 5,
     name: "Ayush Anand",
     username: "aayushmisfiit",
-    photo: "/Judges/Ayush.png",
+    photo: "/Ayush.png",
   },
 ];
 
