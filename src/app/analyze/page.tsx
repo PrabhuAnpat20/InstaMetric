@@ -122,7 +122,7 @@ export default function Home() {
     <div className="container mx-auto p-4 px-8 md:p-8 ">
       <div className="flex flex-wrap lg:flex-nowrap gap-8">
         {/* Left Column */}
-        <div className="w-full lg:w-1/3 mx-10">
+        <div className="w-full lg:w-1/3 md:mx-10">
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-8 mb-6">
             {judges.map((judge) => (
               <div
@@ -143,7 +143,7 @@ export default function Home() {
                   />
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-70 p-2">
-                  <p className="text-white text-center font-semibold">
+                  <p className="text-white text-center font-semibold text-xs md:text-lg">
                     {judge.name}
                   </p>
                 </div>
@@ -180,7 +180,7 @@ export default function Home() {
         </div>
 
         {/* Right Column */}
-        <div className="w-full lg:w-2/3 mx-10">
+        <div className="w-full lg:w-2/3 md:mx-10">
           <Card className="h-[450px] overflow-y-scroll scrollable-container bg-gray-800">
             <CardHeader>
               <CardTitle className="text-gray-50">Analysis Results</CardTitle>
@@ -196,7 +196,7 @@ export default function Home() {
                   className="text-gray-300"
                 />
               ) : (
-                <p className="text-gray-100">
+                <p className="text-gray-500">
                   Select a judge and post type, then click Generate Analysis to
                   see results.
                 </p>

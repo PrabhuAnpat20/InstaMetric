@@ -12,15 +12,15 @@ export function BackgroundBeamsDemo() {
       <div className="max-w-2xl mx-auto p-4 relative z-20">
         {" "}
         {/* Increased z-index */}
-        <h1 className="text-lg md:text-7xl bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-600 text-center font-sans font-bold mb-4">
+        <h1 className="text-4xl md:text-7xl bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-600 text-center font-sans font-bold mb-4">
           Stalk Your Judges
         </h1>
-        <p className="text-neutral-500 max-w-lg mx-auto my-2 text-sm text-center">
+        <p className="text-neutral-500 max-w-lg mx-auto my-2 text-xs md:text-sm text-center">
           Think your judges are all work and no play? Let’s snoop a little!,
           we’re here to uncover their social media shenanigans—because everyone
           leaves a digital footprint.
         </p>
-        <div className="relative z-50  mt-10">
+        <div className="relative z-50  mt-6 md:mt-10">
           {" "}
           {/* Added relative positioning and higher z-index */}
           <AnimatedTooltipPreview />
