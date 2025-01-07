@@ -117,11 +117,12 @@ export default function Home() {
       setIsLoading(false);
     }
   };
+
   return (
-    <div className="container mx-auto p-8">
-      <div className="flex flex-col lg:flex-row gap-8">
-        <div className="lg:w-2/3">
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-16 mb-6">
+    <div className="container mx-auto p-4 md:p-8">
+      <div className="flex flex-wrap lg:flex-nowrap gap-8">
+        <div className="w-full lg:w-2/3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-8 mb-6">
             {judges.map((judge) => (
               <div
                 key={judge.id}
@@ -132,7 +133,7 @@ export default function Home() {
                 }`}
                 onClick={() => setSelectedJudge(judge.id)}
               >
-                <div className="relative h-48 w-full">
+                <div className="relative h-32 sm:h-48 w-full">
                   <Image
                     src={judge.photo}
                     alt={judge.name}
@@ -148,12 +149,12 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <div className="flex gap-4">
+          <div className="flex flex-col sm:flex-row gap-4">
             <Select
               onValueChange={setSelectedPostType}
               value={selectedPostType}
             >
-              <SelectTrigger className="w-full md:w-72 bg-gray-800 text-white">
+              <SelectTrigger className="w-full sm:w-72 bg-gray-800 text-white">
                 <SelectValue
                   placeholder="Select post type"
                   className="text-white"
@@ -168,7 +169,7 @@ export default function Home() {
               </SelectContent>
             </Select>
             <Button
-              className="w-full md:w-72"
+              className="w-full sm:w-72"
               onClick={generateAnalysis}
               disabled={!selectedJudge || !selectedPostType || isLoading}
             >
@@ -176,14 +177,10 @@ export default function Home() {
             </Button>
           </div>
         </div>
-        <div className="lg:w-1/3">
-          <Card
-            className={`  h-[450px] overflow-y-scroll scrollable-container ${
-              !error ? "bg-gray-800" : ""
-            }`}
-          >
+        <div className="w-full lg:w-1/3">
+          <Card className="h-[450px] overflow-y-scroll scrollable-container bg-gray-800">
             <CardHeader>
-              <CardTitle className=" text-gray-50">Analysis Results</CardTitle>
+              <CardTitle className="text-gray-50">Analysis Results</CardTitle>
             </CardHeader>
             <CardContent>
               {isLoading ? (
@@ -193,7 +190,7 @@ export default function Home() {
               ) : analysis ? (
                 <p
                   dangerouslySetInnerHTML={{ __html: analysis }}
-                  className=" text-gray-300"
+                  className="text-gray-300"
                 />
               ) : (
                 <p className="text-gray-100">
