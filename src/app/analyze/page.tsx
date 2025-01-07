@@ -11,6 +11,82 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
+interface AnalysisFormatterProps {
+  analysisText: string;
+}
+
+// Analysis Formatter Component
+const AnalysisFormatter: React.FC<AnalysisFormatterProps> = ({
+  analysisText,
+}) => {
+  const formatAnalysis = (text: string): string => {
+    if (!text) return "";
+
+    return (
+      text
+        // Format headers
+        .replace(/={2,}/g, "") // Remove === lines
+        .replace(
+          /#{1,4} (.*?)[\r\n]/g,
+          (_, title) =>
+            `<h${
+              title.startsWith(" ") ? 3 : 2
+            } class="text-xl font-bold text-gray-100 mt-6 mb-3">${title.trim()}</h${
+              title.startsWith(" ") ? 3 : 2
+            }>\n`
+        )
+        // Format bullet points
+        .replace(
+          /\* (.*?)[\r\n]/g,
+          '<li class="ml-4 mb-2 text-gray-300">$1</li>'
+        )
+        // Format numbered lists
+        .replace(
+          /(\d+)\. (.*?)[\r\n]/g,
+          '<li class="ml-4 mb-2 text-gray-300">$2</li>'
+        )
+        // Format tables
+        .replace(/\|(.*?)\|/g, (match) => {
+          const cells = match.split("|").filter((cell) => cell.trim());
+          return cells
+            .map(
+              (cell) =>
+                `<td class="px-4 py-2 border border-gray-600 text-gray-300">${cell.trim()}</td>`
+            )
+            .join("");
+        })
+        .replace(
+          /\n\|(.*?)\|\n/g,
+          (match) => `<tr>${match.replace(/\|(.*?)\|/, "$1")}</tr>`
+        )
+        // Format bold text
+        .replace(/\*\*(.*?)\*\*/g, '<strong class="text-blue-400">$1</strong>')
+        // Format plus signs as bullet points
+        .replace(
+          /\+ (.*?)[\r\n]/g,
+          '<li class="ml-8 mb-2 text-gray-300">$1</li>'
+        )
+        // Wrap lists in ul tags
+        .replace(/<li.*?>(.*?)<\/li>/g, (match) =>
+          match.includes('class="ml-8"')
+            ? match
+            : `<ul class="list-disc mb-4">${match}</ul>`
+        )
+    );
+  };
+
+  return (
+    <div className="prose prose-invert max-w-none">
+      <div
+        dangerouslySetInnerHTML={{
+          __html: formatAnalysis(analysisText),
+        }}
+        className="text-gray-300 leading-relaxed"
+      />
+    </div>
+  );
+};
+
 interface Judge {
   id: number;
   name: string;
@@ -55,22 +131,14 @@ const judges: Judge[] = [
   },
 ];
 
-const postTypes = ["Reel", "Carousel", "Image"];
+const postTypes = ["Reel", "Carousel", "Image"] as const;
+type PostType = (typeof postTypes)[number];
 
-const formatAnalysisText = (text: string): string =>
-  text
-    .replace(
-      /(\*\*.*?\*\*)/g,
-      (match) => `<strong>${match.replace(/\*\*/g, "")}</strong>`
-    )
-    .replace(/\n/g, "<br />");
-
-export default function Home() {
+const Home: React.FC = () => {
   const [selectedJudge, setSelectedJudge] = useState<number | null>(null);
-  const [selectedPostType, setSelectedPostType] = useState<string | undefined>(
-    undefined
-  );
-
+  const [selectedPostType, setSelectedPostType] = useState<
+    PostType | undefined
+  >(undefined);
   const [analysis, setAnalysis] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -104,10 +172,7 @@ export default function Home() {
       }
 
       const data: AnalysisResponse = await response.json();
-      const formattedText = formatAnalysisText(
-        data.text || "No analysis text available."
-      );
-      setAnalysis(formattedText);
+      setAnalysis(data.text || "No analysis text available.");
     } catch (err) {
       console.error("Error generating analysis:", err);
       setError(
@@ -119,7 +184,7 @@ export default function Home() {
   };
 
   return (
-    <div className="container mx-auto p-4 px-8 md:p-8 ">
+    <div className="container mx-auto p-4 px-8 md:p-8">
       <div className="flex flex-wrap lg:flex-nowrap gap-8">
         {/* Left Column */}
         <div className="w-full lg:w-1/3 md:mx-10">
@@ -130,7 +195,7 @@ export default function Home() {
                 className={`relative cursor-pointer rounded-lg overflow-hidden transition-all duration-200 ${
                   selectedJudge === judge.id
                     ? "ring-2 ring-blue-500 scale-105 shadow-[0_0_10px_rgba(59,130,246,0.75)]"
-                    : "hover:scale-105 "
+                    : "hover:scale-105"
                 }`}
                 onClick={() => setSelectedJudge(judge.id)}
               >
@@ -150,9 +215,9 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <div className="flex flex-col sm:flex-row gap-4 ">
+          <div className="flex flex-col sm:flex-row gap-4">
             <Select
-              onValueChange={setSelectedPostType}
+              onValueChange={(value: PostType) => setSelectedPostType(value)}
               value={selectedPostType}
             >
               <SelectTrigger className="w-full sm:w-72 bg-gray-800 text-white">
@@ -191,10 +256,7 @@ export default function Home() {
               ) : error ? (
                 <p className="text-red-500">Error: {error}</p>
               ) : analysis ? (
-                <p
-                  dangerouslySetInnerHTML={{ __html: analysis }}
-                  className="text-gray-300"
-                />
+                <AnalysisFormatter analysisText={analysis} />
               ) : (
                 <p className="text-gray-500">
                   Select a judge and post type, then click Generate Analysis to
@@ -207,4 +269,6 @@ export default function Home() {
       </div>
     </div>
   );
-}
+};
+
+export default Home;
