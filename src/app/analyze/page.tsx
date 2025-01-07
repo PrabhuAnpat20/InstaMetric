@@ -119,17 +119,18 @@ export default function Home() {
   };
 
   return (
-    <div className="container mx-auto p-4 md:p-8">
+    <div className="container mx-auto p-4 px-8 md:p-8 ">
       <div className="flex flex-wrap lg:flex-nowrap gap-8">
-        <div className="w-full lg:w-2/3">
+        {/* Left Column */}
+        <div className="w-full lg:w-1/3 mx-10">
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-8 mb-6">
             {judges.map((judge) => (
               <div
                 key={judge.id}
                 className={`relative cursor-pointer rounded-lg overflow-hidden transition-all duration-200 ${
                   selectedJudge === judge.id
-                    ? "ring-2 ring-blue-500 scale-105"
-                    : "hover:scale-105"
+                    ? "ring-2 ring-blue-500 scale-105 shadow-[0_0_10px_rgba(59,130,246,0.75)]"
+                    : "hover:scale-105 "
                 }`}
                 onClick={() => setSelectedJudge(judge.id)}
               >
@@ -149,7 +150,7 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row gap-4 ">
             <Select
               onValueChange={setSelectedPostType}
               value={selectedPostType}
@@ -177,7 +178,9 @@ export default function Home() {
             </Button>
           </div>
         </div>
-        <div className="w-full lg:w-1/3">
+
+        {/* Right Column */}
+        <div className="w-full lg:w-2/3 mx-10">
           <Card className="h-[450px] overflow-y-scroll scrollable-container bg-gray-800">
             <CardHeader>
               <CardTitle className="text-gray-50">Analysis Results</CardTitle>
