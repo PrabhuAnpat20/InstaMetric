@@ -60,7 +60,7 @@ const AnalysisFormatter: React.FC<AnalysisFormatterProps> = ({
           (match) => `<tr>${match.replace(/\|(.*?)\|/, "$1")}</tr>`
         )
         // Format bold text
-        .replace(/\*\*(.*?)\*\*/g, '<strong class="text-blue-400">$1</strong>')
+        .replace(/\*\*(.*?)\*\*/g, '<strong class="text-gray-400">$1</strong>')
         // Format plus signs as bullet points
         .replace(
           /\+ (.*?)[\r\n]/g,
