@@ -4,11 +4,12 @@
 
 InstaMetric analyzes individual user engagement on social media, providing valuable metrics and insights to optimize performance and maximize ROI.
 
-## Live Demo 🔗
+## Deployed Link 🔗
 
 [Youtube](https://insta-metric-5yh5.vercel.app/)
 
-## Deployed Link 🖥️
+
+## Live Demo 🖥️
 
 [InstaMetric](https://youtu.be/2HeHlF4QlvY)
 
