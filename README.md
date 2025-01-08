@@ -6,12 +6,12 @@ InstaMetric analyzes individual user engagement on social media, providing valua
 
 ## Deployed Link 🔗
 
-[Youtube](https://insta-metric-5yh5.vercel.app/)
+[InstaMetric](https://insta-metric-5yh5.vercel.app/)
 
 
 ## Live Demo 🖥️
 
-[InstaMetric](https://youtu.be/2HeHlF4QlvY)
+[Youtube](https://youtu.be/2HeHlF4QlvY)
 
 Built as a part of Level SuperMind Pre-Hackathon
 
